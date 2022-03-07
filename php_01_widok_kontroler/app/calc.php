@@ -25,7 +25,7 @@ if($z == ""){
 }
 
 if (empty( $messages )) {
-	
+
 	if (! is_numeric( $x )) {
 		$messages [] = 'Pierwsza wartość nie jest liczbą';
 	}
@@ -34,18 +34,18 @@ if (empty( $messages )) {
 	}
 	if (! is_numeric( $z )) {
 		$messages [] = 'Trzecia wartość nie jest liczbą';
-	}	
+	}
 
 }
 
 // 3. Wykonanie operacji
 
 if(empty($messages)){
-	$x = intval($x);
-	$y = intval($y);
-	$z = intval($z);
-	
-	$result = $x/($y*(1+($z/12)));
+	$x = intval($x); //kwota kredytu
+	$y = intval($y); //lata kredytu
+	$z = intval($z); //oprocentowanie
+
+	$result = $x/(($y/12)*(1+($z/12))); //wzor nieprawidlowy?
 }
 
 // 4. Wywołanie widoku z przekazaniem zmiennych
