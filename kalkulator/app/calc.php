@@ -61,8 +61,8 @@ global $role;
 
 
 	//wykonanie operacji
-	if ($role != 'admin' &&$x>2000){
-		$messages[] = 'Tylko admin moze brac kredyt na wiecej niz 2000';
+	if ($role != 'admin' &&$y>5){
+		$messages[] = 'Dlugie kredyty tylko dla admina!';
 }
  else{
 	$z=12*$z;
