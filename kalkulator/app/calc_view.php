@@ -22,7 +22,7 @@
 	<div style="width:90%; margin: 2em auto;">
 
 		<form action="<?php print(_APP_URL);?>/app/calc.php" method="post" class="pure-form pure-form-stacked" >
-			
+
        <label for="id_x">Kwota kredytu: </label>
        <input id="id_x" type="text" name="x" value="<?php out($x)?>"/<><br/>
 
