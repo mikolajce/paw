@@ -6,7 +6,7 @@ function getParamsLogin(&$form){
 	$form['login'] = isset ($_REQUEST ['login']) ? $_REQUEST ['login'] : null;
 	$form['pass'] = isset ($_REQUEST ['pass']) ? $_REQUEST ['pass'] : null;
 }
-
+ 
 //walidacja parametrów z przygotowaniem zmiennych dla widoku
 function validateLogin(&$form,&$messages){
 	// sprawdzenie, czy parametry zostały przekazane

@@ -14,5 +14,3 @@ define("_ROOT_PATH", dirname(__FILE__));
 function out(&$param){
   if(isset($param)) echo $param;
 }
-
-?>
