@@ -1,16 +1,18 @@
 <?php
 
+$conf = new Config();
 //port hosta zaczerpnięty z xamppa
-define('_SERVER_NAME', 'localhost:80');
+$conf->server_name = 'localhost:80';
 
-define('_SERVER_URL', 'http://'._SERVER_NAME);
+$conf->server_url = 'http://'.$conf->server_name;
 
-define('_APP_ROOT', '/paw/kalkulator');
+$conf->app_root = '/paw/kalkulator'
 
-define('_APP_URL', _SERVER_URL._APP_ROOT);
+$conf->app_url = $conf->server_url.$conf->app_root;
 
-define("_ROOT_PATH", dirname(__FILE__));
+$conf->root_path = dirname(__FILE__);
 
-function out(&$param){
-  if(isset($param)) echo $param;
-}
+$conf->action_root = $conf->app_root.'/app/ctrl.php?action=';
+
+$conf->action_url = $conf->server_url.$conf->action_root;
+?>
