@@ -25,9 +25,9 @@ class CalcCtrl{
 
   public function validate(){
 
-    if(!(isset($this->form->x) && (isset($this->form->y)) && (isset($this->form->y))){
+    if(!( isset($this->form->x) && isset($this->form->y) && isset($this->form->z)))
       return false;
-    }
+
 
     if ($this->form->x == "") {
 			$this->msgs->addError('Nie podano kwoty kredytu');
