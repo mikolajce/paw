@@ -30,24 +30,24 @@ class CalcCtrl{
 
 
     if ($this->form->x == "") {
-			$this->msgs->addError('Nie podano kwoty kredytu');
+			$this->messages->addError('Nie podano kwoty kredytu');
 		}
 		if ($this->form->y == "") {
-			$this->msgs->addError('Nie podano liczby lat');
+			$this->messages->addError('Nie podano liczby lat');
 		}
     if ($this->form->z == "") {
-			$this->msgs->addError('Nie podano oprocentowania');
+			$this->messages->addError('Nie podano oprocentowania');
     }
 
-    if (! $this->msgs->isError()) {
+    if (! $this->messages->isError()) {
 
 			// sprawdzenie, czy $x i $y są liczbami całkowitymi
 			if (! is_numeric ( $this->form->y )) {
-				$this->msgs->addError('Druga wartość nie jest liczbą całkowitą');
+				$this->messages->addError('Druga wartość nie jest liczbą całkowitą');
 			}
 		}
 
-    return ! $this->msgs->isError();
+    return ! $this->messages->isError();
 
   }
 
@@ -61,9 +61,12 @@ class CalcCtrl{
       $this->form->z = intval($this->form->z);
       $this->messages->addInfo('Parametry poprawne');
 
-      $this->form->$z=12*$this->form->$z;
-		  $this->form->$y=$this->form->$y/100;
-		  $result = ($this->form->$x*$this->form->$y)/(12*(1-((12/(12+$this->form->$y))**$this->form->$z)));
+      $x = $this->form->x;
+	    $y = $this->form->y*12;
+	    $z = $this->form->z/100;
+
+		  $result = ($x*$z)/(12*(1-((12/(12+$z))**$y)));
+		  $this->result->result = number_format($result, 1, ',', ' ');
 
       $this->messages->addInfo('Wykonano obliczenia');
     }
@@ -81,7 +84,7 @@ class CalcCtrl{
 		$smarty->assign('page_description','Kalkulator obliczajacy rate kredytu');
 		$smarty->assign('page_header','Kalkulator kredytowy');
 
-		$smarty->assign('msgs',$this->msgs);
+		$smarty->assign('messages',$this->messages);
 		$smarty->assign('form',$this->form);
 		$smarty->assign('res',$this->result);
 
