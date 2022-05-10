@@ -20,8 +20,16 @@
 
 						<!-- Logo -->
 							<div id="logo">
-								<h1><a href="main.tpl">Vinylove</a></h1>
-								<span>Witaj<!--implement username -->!</span>
+								<h1><a href="{$conf->action_root}hello">Vinylove</a></h1>
+								<span>
+									{if \core\RoleUtils::inRole('admin')}
+										Hej, Mikołaj!
+									{elseif \core\RoleUtils::inRole('user')}
+										Zalogowano jako user
+									{else}
+										Witaj!
+									{/if}<!--implement username-->
+								</span>
 							</div>
 
 						<!-- Nav -->
@@ -30,15 +38,22 @@
 									{if count($conf->roles)>0}
 										<li class="current"><a href="{$conf->action_root}logout">Wyloguj</a></li>
 									{else}
-										<li class="current"><a href="{$conf->action_root}wip">Zaloguj</a></li>
+										<li class="current"><a href="{$conf->action_root}loginShow">Zaloguj</a></li>
 									{/if}
-									<li><a href="{$conf->action_root}wip">Wypożycz</a></li>
+									<li>
+										<a href="
+											{if count($conf->roles)>0}
+												{$conf->action_root}wip
+											{else}
+												{$conf->action_root}loginShow
+											{/if}
+										">Wypożycz</a></li>
 									<li>
 										<a href="{$conf->action_root}wip">O nas</a>
 										<ul>
-											<li><a href="{$conf->action_root}wip">O firmie</a></li>
-											<li><a href="{$conf->action_root}wip">Kontakt</a></li>
-											<li><a href="{$conf->action_root}wip">Jak dojechać?</a></li>
+											<li><a href="{$conf->action_root}wip">Dolor sit amet</a></li>
+											<li><a href="{$conf->action_root}wip">Esse cillum dolore</a></li>
+											<li><a href="{$conf->action_root}wip">Ullamco laboris nisi</a></li>
 										</ul>
 									</li>
 

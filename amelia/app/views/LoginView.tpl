@@ -10,7 +10,7 @@
 					<!-- Sidebar -->
 						<div id="sidebar">
 							<section class="widget thumbnails">
-								<h3>Interesting stuff</h3>
+								<h3>Lorem ipsum</h3>
 								<div class="grid">
 									<div class="row gtr-50">
 										<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
@@ -19,7 +19,7 @@
 										<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
 									</div>
 								</div>
-								<a href="#" class="button icon fa-file-alt">More</a>
+								<!--<a href="#" class="button icon fa-file-alt">More</a>-->
 							</section>
 						</div>
 
@@ -27,16 +27,20 @@
 				<div class="col-8 col-12-medium imp-medium">
 
 					<!-- Content -->
+					<form action="{$conf->action_root}login" method="post">
 						<div id="content">
 							<section class="last">
-								<h2>So what's this all about?</h2>
-								<p>This is <strong>Verti</strong>, a free and fully responsive HTML5 site template by <a href="http://html5up.net">HTML5 UP</a>.
-								Verti is released under the <a href="http://html5up.net/license">Creative Commons Attribution license</a>, so feel free to use it for any personal or commercial project you might have going on (just don't forget to credit us for the design!)</p>
-								<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.</p>
-								<a href="#" class="button icon solid fa-arrow-circle-right">Continue Reading</a>
+								<h2>Witaj! Jak cię zwą?</h2>
+								<p>Login:</p>
+								<input id="id_login" type="text" name="login" placeholder="np. ruchacz69" value="{$form->login}">
+								<p>Hasło:</p>
+								<input id="id_pass" type="password" name="pass" placeholder="np. kochampieski123" value="">
+								<p></p>
+								<!--<a href="#" type="submit" class="button icon solid fa-arrow-circle-right">Zaloguj</a>-->
+								<input type="submit" name="Zaloguj" value="" class="button icon solid fa-arrow-circle-right">
 							</section>
 						</div>
-
+					</form>
 				</div>
 			</div>
 		</div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-09 18:08:26
+/* Smarty version 4.1.0, created on 2022-05-10 17:51:48
   from 'D:\xampp\htdocs\amelia\app\views\HelloView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_62793c7ab5d222_57920833',
+  'unifunc' => 'content_627a8a14f2d040_98725167',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a33f6ccdab378a1704040415c08fc8fbb6ebbab' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\HelloView.tpl',
-      1 => 1652112504,
+      1 => 1652197906,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_62793c7ab5d222_57920833 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627a8a14f2d040_98725167 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_158587754862793c7ab59f21_61976527', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_544452668627a8a14f276d0_34693262', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_158587754862793c7ab59f21_61976527 extends Smarty_Internal_Block
+class Block_544452668627a8a14f276d0_34693262 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_158587754862793c7ab59f21_61976527',
+    0 => 'Block_544452668627a8a14f276d0_34693262',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -54,8 +54,15 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 				</div>
 				<div class="col-5 col-12-medium">
 					<ul>
-						<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
+						<li><a href="
+							<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
+								<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+wip
+							<?php } else { ?>
+								<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+loginShow
+							<?php }?>
+						" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
 						<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 wip" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
 					</ul>

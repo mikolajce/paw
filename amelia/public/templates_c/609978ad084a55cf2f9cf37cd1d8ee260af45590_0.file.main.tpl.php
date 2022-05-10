@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-09 18:55:09
+/* Smarty version 4.1.0, created on 2022-05-10 17:58:52
   from 'D:\xampp\htdocs\amelia\app\views\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6279476db6a407_83530250',
+  'unifunc' => 'content_627a8bbcbbecd1_78455625',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '609978ad084a55cf2f9cf37cd1d8ee260af45590' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\templates\\main.tpl',
-      1 => 1652112584,
+      1 => 1652198330,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6279476db6a407_83530250 (Smarty_Internal_Template $_smarty_tpl) {
+function content_627a8bbcbbecd1_78455625 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -46,8 +46,17 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 
 						<!-- Logo -->
 							<div id="logo">
-								<h1><a href="main.tpl">Vinylove</a></h1>
-								<span>Witaj<!--implement username -->!</span>
+								<h1><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+hello">Vinylove</a></h1>
+								<span>
+									<?php if (\core\RoleUtils::inRole('admin')) {?>
+										Hej, Mikołaj!
+									<?php } elseif (\core\RoleUtils::inRole('user')) {?>
+										Zalogowano jako user
+									<?php } else { ?>
+										Witaj!
+									<?php }?><!--implement username-->
+								</span>
 							</div>
 
 						<!-- Nav -->
@@ -58,20 +67,28 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 logout">Wyloguj</a></li>
 									<?php } else { ?>
 										<li class="current"><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip">Zaloguj</a></li>
+loginShow">Zaloguj</a></li>
 									<?php }?>
-									<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip">Wypożycz</a></li>
+									<li>
+										<a href="
+											<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
+												<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+wip
+											<?php } else { ?>
+												<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+loginShow
+											<?php }?>
+										">Wypożycz</a></li>
 									<li>
 										<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 wip">O nas</a>
 										<ul>
 											<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip">O firmie</a></li>
+wip">Dolor sit amet</a></li>
 											<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip">Kontakt</a></li>
+wip">Esse cillum dolore</a></li>
 											<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip">Jak dojechać?</a></li>
+wip">Ullamco laboris nisi</a></li>
 										</ul>
 									</li>
 
@@ -82,7 +99,7 @@ wip">Jak dojechać?</a></li>
 				</div>
 
 			<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13586616216279476db69af5_91008134', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_143021808627a8bbcbbe4a9_13913023', 'content');
 ?>
 
 
@@ -192,12 +209,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13586616216279476d
 </html>
 <?php }
 /* {block 'content'} */
-class Block_13586616216279476db69af5_91008134 extends Smarty_Internal_Block
+class Block_143021808627a8bbcbbe4a9_13913023 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_13586616216279476db69af5_91008134',
+    0 => 'Block_143021808627a8bbcbbe4a9_13913023',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

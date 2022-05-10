@@ -11,7 +11,13 @@
 				</div>
 				<div class="col-5 col-12-medium">
 					<ul>
-						<li><a href="{$conf->action_root}wip" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
+						<li><a href="
+							{if count($conf->roles)>0}
+								{$conf->action_root}wip
+							{else}
+								{$conf->action_root}loginShow
+							{/if}
+						" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
 						<li><a href="{$conf->action_root}wip" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
 					</ul>
 				</div>
