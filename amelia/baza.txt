@@ -60,17 +60,6 @@ KEY `FK_70` (`id_wypozyczalnia`),
 CONSTRAINT `FK_67` FOREIGN KEY `FK_70` (`id_wypozyczalnia`) REFERENCES `Wypozyczalnia` (`id_wypozyczalnia`)
 );
 
-CREATE TABLE `WypozProdukt`
-(
- `id_wypozyczenie` integer NOT NULL ,
- `id_produkt`      integer NOT NULL ,
-
-KEY `FK_47` (`id_wypozyczenie`),
-CONSTRAINT `FK_45` FOREIGN KEY `FK_47` (`id_wypozyczenie`) REFERENCES `Wypozyczenie` (`id_wypozyczenie`),
-KEY `FK_52` (`id_produkt`),
-CONSTRAINT `FK_49` FOREIGN KEY `FK_52` (`id_produkt`) REFERENCES `Produkt` (`id_produkt`)
-);
-
 CREATE TABLE `Wypozyczenie`
 (
  `id_wypozyczenie` integer AUTO_INCREMENT NOT NULL ,
@@ -82,6 +71,17 @@ CREATE TABLE `Wypozyczenie`
 PRIMARY KEY (`id_wypozyczenie`),
 KEY `FK_30` (`id_uzytkownik`),
 CONSTRAINT `FK_28` FOREIGN KEY `FK_30` (`id_uzytkownik`) REFERENCES `Uzytkownik` (`id_uzytkownik`)
+);
+
+CREATE TABLE `WypozProdukt`
+(
+ `id_wypozyczenie` integer NOT NULL ,
+ `id_produkt`      integer NOT NULL ,
+
+KEY `FK_47` (`id_wypozyczenie`),
+CONSTRAINT `FK_45` FOREIGN KEY `FK_47` (`id_wypozyczenie`) REFERENCES `Wypozyczenie` (`id_wypozyczenie`),
+KEY `FK_52` (`id_produkt`),
+CONSTRAINT `FK_49` FOREIGN KEY `FK_52` (`id_produkt`) REFERENCES `Produkt` (`id_produkt`)
 );
 
 
