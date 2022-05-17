@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-10 17:58:52
+/* Smarty version 4.1.0, created on 2022-05-17 15:25:43
   from 'D:\xampp\htdocs\amelia\app\views\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_627a8bbcbbecd1_78455625',
+  'unifunc' => 'content_6283a2577accb4_46211109',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '609978ad084a55cf2f9cf37cd1d8ee260af45590' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\templates\\main.tpl',
-      1 => 1652198330,
+      1 => 1652793940,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627a8bbcbbecd1_78455625 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6283a2577accb4_46211109 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -57,11 +57,16 @@ hello">Vinylove</a></h1>
 										Witaj!
 									<?php }?><!--implement username-->
 								</span>
+
 							</div>
 
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
+									<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20526227266283a2577a1558_68959229', 'messages');
+?>
+
 									<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
 										<li class="current"><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 logout">Wyloguj</a></li>
@@ -99,7 +104,7 @@ wip">Ullamco laboris nisi</a></li>
 				</div>
 
 			<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_143021808627a8bbcbbe4a9_13913023', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14089772836283a2577ac352_62352499', 'content');
 ?>
 
 
@@ -137,6 +142,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_143021808627a8bbcb
 									</section>
 
 							</div>
+
 							<div class="col-3 col-6-medium col-12-small">
 
 								<!-- Links -->
@@ -208,13 +214,58 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_143021808627a8bbcb
 	</body>
 </html>
 <?php }
+/* {block 'messages'} */
+class Block_20526227266283a2577a1558_68959229 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'messages' => 
+  array (
+    0 => 'Block_20526227266283a2577a1558_68959229',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+									<li class="current">
+										<?php if ($_smarty_tpl->tpl_vars['msgs']->value->isMessage()) {?>
+											<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['msgs']->value->getMessages(), 'msg');
+$_smarty_tpl->tpl_vars['msg']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['msg']->value) {
+$_smarty_tpl->tpl_vars['msg']->do_else = false;
+?>
+													<?php if ($_smarty_tpl->tpl_vars['msg']->value->isError()) {?>
+														<h5>
+													<?php }?>
+													<?php if ($_smarty_tpl->tpl_vars['msg']->value->isWarning()) {?>
+														Warning:
+													<?php }?>
+													<!--
+													<?php if ($_smarty_tpl->tpl_vars['msg']->value->isInfo()) {?>
+														Info:
+												  <?php }?>
+													-->
+													<?php echo $_smarty_tpl->tpl_vars['msg']->value->text;?>
+
+													<?php if ($_smarty_tpl->tpl_vars['msg']->value->isError()) {?>
+														</h5>
+													<?php }?>
+											<?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+										<?php }?>
+									</li>
+									<?php
+}
+}
+/* {/block 'messages'} */
 /* {block 'content'} */
-class Block_143021808627a8bbcbbe4a9_13913023 extends Smarty_Internal_Block
+class Block_14089772836283a2577ac352_62352499 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_143021808627a8bbcbbe4a9_13913023',
+    0 => 'Block_14089772836283a2577ac352_62352499',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

@@ -30,11 +30,35 @@
 										Witaj!
 									{/if}<!--implement username-->
 								</span>
+
 							</div>
 
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
+									{block name=messages}
+									<li class="current">
+										{if $msgs->isMessage()}
+											{foreach $msgs->getMessages() as $msg}
+													{if $msg->isError()}
+														<h5>
+													{/if}
+													{if $msg->isWarning()}
+														Warning:
+													{/if}
+													<!--
+													{if $msg->isInfo()}
+														Info:
+												  {/if}
+													-->
+													{$msg->text}
+													{if $msg->isError()}
+														</h5>
+													{/if}
+											{/foreach}
+										{/if}
+									</li>
+									{/block}
 									{if count($conf->roles)>0}
 										<li class="current"><a href="{$conf->action_root}logout">Wyloguj</a></li>
 									{else}
@@ -99,6 +123,7 @@
 									</section>
 
 							</div>
+
 							<div class="col-3 col-6-medium col-12-small">
 
 								<!-- Links -->

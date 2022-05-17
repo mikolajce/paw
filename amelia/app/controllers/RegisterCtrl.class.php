@@ -8,7 +8,7 @@ use core\RoleUtils;
 use core\ParamUtils;
 use app\forms\LoginForm;
 
-class LoginCtrl{
+class RegisterCtrl{
 	private $form;
 
 	public function __construct(){
@@ -51,19 +51,10 @@ class LoginCtrl{
 		$this->generateView();
 	}
 
-	public function action_login(){
+	public function action_register(){
 		if ($this->validate()){
 			//zalogowany => przekieruj na główną akcję (z przekazaniem messages przez sesję)
-			App::getDB()->insert("Uzytkownik",[
-  			"id_uzytkownik" => $id_uzytkownik,
-  			"login" => $login,
-  			"pass" => $pass,
-  			"imie" => $imie,
-  			"nazwisko" => $nazwisko,
-				"emai" => $email
- 			]);
-
-			Utils::addErrorMessage('Poprawnie zalogowano do systemu');
+			Utils::addErrorMessage('Poprawnie utworzono konto.');
 			App::getRouter()->redirectTo("hello");
 		} else {
 			//niezalogowany => pozostań na stronie logowania
@@ -78,6 +69,6 @@ class LoginCtrl{
 
 	public function generateView(){
 		App::getSmarty()->assign('form',$this->form); // dane formularza do widoku
-		App::getSmarty()->display('LoginView.tpl');
+		App::getSmarty()->display('RegisterView.tpl');
 	}
 }

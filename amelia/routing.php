@@ -14,3 +14,5 @@ Utils::addRoute('hello', 'HelloCtrl');
 Utils::addRoute('accessdenied', 'HelloCtrl');
 
 Utils::addRoute('wip', 'WIPCtrl');
+
+Utils::addRoute('register', 'RegisterCtrl');

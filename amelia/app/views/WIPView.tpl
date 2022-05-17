@@ -16,5 +16,19 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- zaprojektowany widok dla tabeli -->
+		<!-- WORK IN PROGRESS, pokombinować z parametrami diva -->
+		<div id="banner" class="container">
+		<table>
+			{foreach $role as $row}
+				<tr>
+					<td>{$row["id_rola"]}</td>
+					<td>{$row["nazwa"]}</td>
+					<td>{$row["opis"]}</td>
+				</tr>
+			{/foreach}
+		</table>
+		</div>
 	</div>
 {/block}
