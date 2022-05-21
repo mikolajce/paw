@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-17 15:26:20
+/* Smarty version 4.1.0, created on 2022-05-21 13:08:03
   from 'D:\xampp\htdocs\amelia\app\views\LoginView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6283a27ce0c163_74696602',
+  'unifunc' => 'content_6288c8131717f8_19994484',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd128481e9fb4cdb0ffbcc6eb03c2aae0157da120' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\LoginView.tpl',
-      1 => 1652793979,
+      1 => 1653131279,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6283a27ce0c163_74696602 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6288c8131717f8_19994484 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19350712376283a27ce083a5_63971087', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11458740436288c81316d5a3_93307965', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_19350712376283a27ce083a5_63971087 extends Smarty_Internal_Block
+class Block_11458740436288c81316d5a3_93307965 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_19350712376283a27ce083a5_63971087',
+    0 => 'Block_11458740436288c81316d5a3_93307965',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -87,7 +87,7 @@ login" method="post">
 								<p></p>
 								<h5>Nie masz konta?</h5>
 								<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-register" class="button alt icon solid fa-arrow-circle-up">Zarejestruj się</a>
+registerShow" class="button alt icon solid fa-arrow-circle-up">Zarejestruj się</a>
 							</section>
 						</div>
 					</form>

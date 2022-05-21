@@ -16,9 +16,13 @@ class LoginCtrl{
 		$this->form = new LoginForm();
 	}
 
-	public function validate() {
+	public function getParams(){
 		$this->form->login = ParamUtils::getFromRequest('login');
 		$this->form->pass = ParamUtils::getFromRequest('pass');
+	}
+
+	public function validate() {
+		$this->getParams();
 
 		//nie ma sensu walidować dalej, gdy brak parametrów
 		if (!isset($this->form->login)) return false;
@@ -36,14 +40,27 @@ class LoginCtrl{
 
 		// sprawdzenie, czy dane logowania poprawne
 		// (takie informacje najczęściej przechowuje się w bazie danych)
-		if ($this->form->login == "admin" && $this->form->pass == "admin") {
+
+		if (App::getDB()->has("uzytkownik" , [
+			"login" => $this->form->login,
+			"pass" => $this->form->pass			]))
+		{
+			if ($this->form->login && $this->form->pass == "admin") {
+				RoleUtils::addRole("admin");
+			} else
+				RoleUtils::addRole("user");
+		} else {
+			Utils::addErrorMessage('Użytkownik nie istnieje');
+		}
+
+		/*if ($this->form->login == "admin" && $this->form->pass == "admin") {
 			RoleUtils::addRole('admin');
 		} else if ($this->form->login == "user" && $this->form->pass == "user") {
 			RoleUtils::addRole('user');
 		} else {
 			Utils::addErrorMessage('Niepoprawny login lub hasło');
 		}
-
+		*/
 		return !App::getMessages()->isError();
 	}
 
@@ -54,14 +71,6 @@ class LoginCtrl{
 	public function action_login(){
 		if ($this->validate()){
 			//zalogowany => przekieruj na główną akcję (z przekazaniem messages przez sesję)
-			App::getDB()->insert("Uzytkownik",[
-  			"id_uzytkownik" => $id_uzytkownik,
-  			"login" => $login,
-  			"pass" => $pass,
-  			"imie" => $imie,
-  			"nazwisko" => $nazwisko,
-				"emai" => $email
- 			]);
 
 			Utils::addErrorMessage('Poprawnie zalogowano do systemu');
 			App::getRouter()->redirectTo("hello");

@@ -13,7 +13,7 @@
 					<ul>
 						<li><a href="
 							{if count($conf->roles)>0}
-								{$conf->action_root}wip
+								{$conf->action_root}vinylList
 							{else}
 								{$conf->action_root}loginShow
 							{/if}

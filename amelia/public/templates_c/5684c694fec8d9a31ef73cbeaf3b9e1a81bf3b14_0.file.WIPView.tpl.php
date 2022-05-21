@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-17 15:56:58
+/* Smarty version 4.1.0, created on 2022-05-17 20:17:06
   from 'D:\xampp\htdocs\amelia\app\views\WIPView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6283a9aa8d6c59_39162510',
+  'unifunc' => 'content_6283e6a2f3a617_36471360',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5684c694fec8d9a31ef73cbeaf3b9e1a81bf3b14' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\WIPView.tpl',
-      1 => 1652795816,
+      1 => 1652796232,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6283a9aa8d6c59_39162510 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6283e6a2f3a617_36471360 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20265436976283a9aa8cf3d9_73819464', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8432370506283e6a2f31a12_13126591', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_20265436976283a9aa8cf3d9_73819464 extends Smarty_Internal_Block
+class Block_8432370506283e6a2f31a12_13126591 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_20265436976283a9aa8cf3d9_73819464',
+    0 => 'Block_8432370506283e6a2f31a12_13126591',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -62,7 +62,7 @@ hello" class="button large icon solid fa-arrow-circle-left">Powrót</a></li>
 		</div>
 
 		<!-- zaprojektowany widok dla tabeli -->
-		<!-- WORK IN PROGRESS -->
+		<!-- WORK IN PROGRESS, pokombinować z parametrami diva -->
 		<div id="banner" class="container">
 		<table>
 			<?php

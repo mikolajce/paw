@@ -41,7 +41,7 @@
 								<input type="submit" name="Zaloguj" value="Zaloguj" class="button icon solid fa-arrow-circle-right">
 								<p></p>
 								<h5>Nie masz konta?</h5>
-								<a href="{$conf->action_root}register" class="button alt icon solid fa-arrow-circle-up">Zarejestruj się</a>
+								<a href="{$conf->action_root}registerShow" class="button alt icon solid fa-arrow-circle-up">Zarejestruj się</a>
 							</section>
 						</div>
 					</form>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-10 17:51:48
+/* Smarty version 4.1.0, created on 2022-05-21 15:47:13
   from 'D:\xampp\htdocs\amelia\app\views\HelloView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_627a8a14f2d040_98725167',
+  'unifunc' => 'content_6288ed610b33c7_23613379',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a33f6ccdab378a1704040415c08fc8fbb6ebbab' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\HelloView.tpl',
-      1 => 1652197906,
+      1 => 1653140819,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_627a8a14f2d040_98725167 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6288ed610b33c7_23613379 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_544452668627a8a14f276d0_34693262', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5318418246288ed60f30615_72734988', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_544452668627a8a14f276d0_34693262 extends Smarty_Internal_Block
+class Block_5318418246288ed60f30615_72734988 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_544452668627a8a14f276d0_34693262',
+    0 => 'Block_5318418246288ed60f30615_72734988',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -57,7 +57,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 						<li><a href="
 							<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
 								<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip
+vinylList
 							<?php } else { ?>
 								<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 loginShow
