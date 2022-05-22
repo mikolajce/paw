@@ -74,6 +74,12 @@ class RegisterCtrl{
 					"nazwisko" => $this->form->nazwisko,
 					"email" => $this->form->email
 				]);
+				App::getDB()->insert("uzytkownikrola",[
+					"id_uzytkownik" => App::getDB()->id("uzytkownik"),
+					"id_rola" => "3",
+					"data_nadania" => "2001-04-27"
+				]);
+
 			} catch (\PDOException $e) {
 				Utils::addErrorMessage('BŁĄD BAZY DANYCH');
 				if(App::getConf()->debug)

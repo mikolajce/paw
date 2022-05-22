@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-21 16:46:32
+/* Smarty version 4.1.0, created on 2022-05-22 13:19:46
   from 'D:\xampp\htdocs\amelia\app\views\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6288fb48a457a2_60429394',
+  'unifunc' => 'content_628a1c52616915_60427345',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '609978ad084a55cf2f9cf37cd1d8ee260af45590' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\templates\\main.tpl',
-      1 => 1653144388,
+      1 => 1653218384,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6288fb48a457a2_60429394 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628a1c52616915_60427345 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -51,10 +51,12 @@ hello">Vinylove</a></h1>
 								<span>
 									<?php if (\core\RoleUtils::inRole('admin')) {?>
 										Hej, Mikołaj!
+									<?php } elseif (\core\RoleUtils::inRole('employee')) {?>
+										Hej, pracowniku!
 									<?php } elseif (\core\RoleUtils::inRole('user')) {?>
 										Zalogowano jako user
 									<?php } else { ?>
-										Witaj!
+										Witaj, nieznajomy!
 									<?php }?><!--implement username-->
 								</span>
 
@@ -64,7 +66,7 @@ hello">Vinylove</a></h1>
 							<nav id="nav">
 								<ul>
 									<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17065076646288fb48a3a043_97735831', 'messages');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_354422825628a1c5260a9b5_18511920', 'messages');
 ?>
 
 									<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
@@ -104,7 +106,7 @@ wip">Ullamco laboris nisi</a></li>
 				</div>
 
 			<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9028869046288fb48a44ff1_94328530', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_583738797628a1c526160e1_16669091', 'content');
 ?>
 
 
@@ -215,12 +217,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9028869046288fb48a
 </html>
 <?php }
 /* {block 'messages'} */
-class Block_17065076646288fb48a3a043_97735831 extends Smarty_Internal_Block
+class Block_354422825628a1c5260a9b5_18511920 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'messages' => 
   array (
-    0 => 'Block_17065076646288fb48a3a043_97735831',
+    0 => 'Block_354422825628a1c5260a9b5_18511920',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -260,12 +262,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block 'messages'} */
 /* {block 'content'} */
-class Block_9028869046288fb48a44ff1_94328530 extends Smarty_Internal_Block
+class Block_583738797628a1c526160e1_16669091 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_9028869046288fb48a44ff1_94328530',
+    0 => 'Block_583738797628a1c526160e1_16669091',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

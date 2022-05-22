@@ -24,10 +24,12 @@
 								<span>
 									{if \core\RoleUtils::inRole('admin')}
 										Hej, Mikołaj!
+									{elseif \core\RoleUtils::inRole('employee')}
+										Hej, pracowniku!
 									{elseif \core\RoleUtils::inRole('user')}
 										Zalogowano jako user
 									{else}
-										Witaj!
+										Witaj, nieznajomy!
 									{/if}<!--implement username-->
 								</span>
 

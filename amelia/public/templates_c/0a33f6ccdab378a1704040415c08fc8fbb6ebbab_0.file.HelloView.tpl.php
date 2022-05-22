@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-21 15:47:13
+/* Smarty version 4.1.0, created on 2022-05-22 15:02:23
   from 'D:\xampp\htdocs\amelia\app\views\HelloView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_6288ed610b33c7_23613379',
+  'unifunc' => 'content_628a345fb3b6b6_71072436',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a33f6ccdab378a1704040415c08fc8fbb6ebbab' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\HelloView.tpl',
-      1 => 1653140819,
+      1 => 1653223822,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6288ed610b33c7_23613379 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628a345fb3b6b6_71072436 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5318418246288ed60f30615_72734988', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1950409618628a345fb34298_86789734', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_5318418246288ed60f30615_72734988 extends Smarty_Internal_Block
+class Block_1950409618628a345fb34298_86789734 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_5318418246288ed60f30615_72734988',
+    0 => 'Block_1950409618628a345fb34298_86789734',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -62,9 +62,15 @@ vinylList
 								<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 loginShow
 							<?php }?>
-						" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
+						" class="button large icon solid fa-arrow-circle-right">
+							<?php if (\core\RoleUtils::inRole('employee') || \core\RoleUtils::inRole('admin')) {?>
+								Zarządzaj
+							<?php } else { ?>
+								Wypożycz
+							<?php }?>
+							</a></li>
 						<li><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
-wip" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
+info" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
 					</ul>
 				</div>
 			</div>

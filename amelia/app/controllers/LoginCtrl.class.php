@@ -47,10 +47,12 @@ class LoginCtrl{
 		{
 			if ($this->form->login && $this->form->pass == "admin") {
 				RoleUtils::addRole("admin");
-			} else
+			} else if ($this->form->login && $this->form->pass == "employee") {
+				RoleUtils::addRole("employee");
+			}	else
 				RoleUtils::addRole("user");
 		} else {
-			Utils::addErrorMessage('Użytkownik nie istnieje');
+			Utils::addErrorMessage('Niepoprawny login lub hasło');
 		}
 
 		/*if ($this->form->login == "admin" && $this->form->pass == "admin") {

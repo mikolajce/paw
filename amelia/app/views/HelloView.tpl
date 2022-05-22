@@ -17,8 +17,14 @@
 							{else}
 								{$conf->action_root}loginShow
 							{/if}
-						" class="button large icon solid fa-arrow-circle-right">Wypożycz</a></li>
-						<li><a href="{$conf->action_root}wip" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
+						" class="button large icon solid fa-arrow-circle-right">
+							{if \core\RoleUtils::inRole('employee') || \core\RoleUtils::inRole('admin')}
+								Zarządzaj
+							{else}
+								Wypożycz
+							{/if}
+							</a></li>
+						<li><a href="{$conf->action_root}info" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
 					</ul>
 				</div>
 			</div>

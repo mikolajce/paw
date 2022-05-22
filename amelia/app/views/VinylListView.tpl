@@ -27,7 +27,7 @@
                       <input id="id_gatunek" type="text" name="gatunek" value="">
                       <br>
                       <p>dagfa</p>
-                      <input type="submit" name="Filtruj" value="Filtruj" class="button icon solid fa-arrow-circle-right">
+                      <input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
   									</div>
   								</div>
 								<!--<a href="#" class="button icon fa-file-alt">More</a>-->
@@ -62,8 +62,14 @@
                         <td>{$row["gatunek"]}</td>
                         -->
                         <td>
-                          <a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button small">Edytuj</a>
-                          <a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button alt small">Usuń</a>
+													{if \core\RoleUtils::inRole('admin')}
+                          	<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button small">Edytuj</a>
+														<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button alt small">Usuń</a>
+													{elseif \core\RoleUtils::inRole('employee')}
+                          	<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button alt small">Edytuj</a>
+													{else}
+														<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button small">Wypożycz</a>
+													{/if}
                         </td>
               				</tr>
               			{/foreach}
@@ -75,6 +81,52 @@
 			</div>
 		</div>
 	</div>
+
+	{if \core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')}
+	<div id="main-wrapper">
+		<div class="container">
+			<div class="row gtr-200">
+				<div class="col-4 col-12-medium">
+
+					<!-- Sidebar -->
+						<div id="sidebar">
+							<section class="widget thumbnails">
+								<h3>Siemano kolano</h3>
+								<div class="grid">
+									<div class="row gtr-50">
+										<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
+										<div class="col-6"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
+										<div class="col-6"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
+										<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
+									</div>
+								</div>
+								<a href="#" class="button icon fa-file-alt">Więcej</a>
+							</section>
+						</div>
+
+				</div>
+				<div class="col-8 col-12-medium imp-medium">
+						<div id="content">
+							<section class="last">
+								<h2>Chcesz dodać nowy produkt?</h2>
+								{if \core\RoleUtils::inRole('employee')}
+									<p>Jako <strong>pracownik</strong> możesz dodawać produkty do bazy danych.
+										<br>Spróbuj!
+									</p>
+								{else}
+									<p>Jako <strong>administrator</strong> możesz dodawać i usuwać produkty z bazy danych.
+										<br>Spróbuj!
+									</p>
+								{/if}
+								<a href="{$conf->action_root}vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
+							</section>
+						</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	{/if}
 <!--
 <form action="{$conf->action_root}login" method="post" class="pure-form pure-form-aligned bottom-margin">
 	<legend>Logowanie do systemu</legend>
