@@ -58,6 +58,8 @@ class VinylListCtrl {
         "dodatki",
         "dostepnosc",
         "id_wypozyczalnia"
+      ],[
+        //"liczba_plyt[=]" => 4
       ]);
     } catch (\PDOException $e) {
       Utils::addErrorMessage('BŁĄD BAZY DANYCH');

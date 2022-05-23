@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-22 14:10:21
+/* Smarty version 4.1.0, created on 2022-05-23 17:01:07
   from 'D:\xampp\htdocs\amelia\app\views\VinylListView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628a282dd9bfb0_09962425',
+  'unifunc' => 'content_628ba1b35dd9e3_50299703',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64e45b47fb98ec43d56ab866cfcc7a26179cbcca' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\VinylListView.tpl',
-      1 => 1653221412,
+      1 => 1653318064,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628a282dd9bfb0_09962425 (Smarty_Internal_Template $_smarty_tpl) {
+function content_628ba1b35dd9e3_50299703 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_247596822628a282dd8ca15_30779401', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1007282460628ba1b35ccfb4_34033878', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_247596822628a282dd8ca15_30779401 extends Smarty_Internal_Block
+class Block_1007282460628ba1b35ccfb4_34033878 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_247596822628a282dd8ca15_30779401',
+    0 => 'Block_1007282460628ba1b35ccfb4_34033878',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -117,19 +117,18 @@ $_smarty_tpl->tpl_vars['row']->do_else = false;
                         <td>
 													<?php if (\core\RoleUtils::inRole('admin')) {?>
                           	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-wip/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
+vinylEdit/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
 " class="button small">Edytuj</a>
 														<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-wip/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
+vinylDelete/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
 " class="button alt small">Usuń</a>
 													<?php } elseif (\core\RoleUtils::inRole('employee')) {?>
                           	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-wip/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
+vinylEdit/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
 " class="button alt small">Edytuj</a>
 													<?php } else { ?>
 														<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-wip/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
-" class="button small">Wypożycz</a>
+wip" class="button small">Wypożycz</a>
 													<?php }?>
                         </td>
               				</tr>
@@ -145,7 +144,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 		</div>
 	</div>
 
-	<?php if (\core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')) {?>
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="row gtr-200">
@@ -171,18 +169,28 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				<div class="col-8 col-12-medium imp-medium">
 						<div id="content">
 							<section class="last">
-								<h2>Chcesz dodać nowy produkt?</h2>
+								<?php if (!\core\RoleUtils::inRole('user')) {?>
+									<h2>Chcesz dodać nowy produkt?</h2>
+								<?php } else { ?>
+									<h2>Zapraszamy do zakupów!</h2>
+								<?php }?>
 								<?php if (\core\RoleUtils::inRole('employee')) {?>
 									<p>Jako <strong>pracownik</strong> możesz dodawać produkty do bazy danych.
 										<br>Spróbuj!
 									</p>
-								<?php } else { ?>
+								<?php } elseif (\core\RoleUtils::inRole('admin')) {?>
 									<p>Jako <strong>administrator</strong> możesz dodawać i usuwać produkty z bazy danych.
 										<br>Spróbuj!
 									</p>
+								<?php } else { ?>
+									<p>Jako <strong>klient</strong> możesz wypożyczyć po jednym produkcie z naszej oferty.
+										<br>Spróbuj!
+									</p>
 								<?php }?>
-								<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+								<?php if (!\core\RoleUtils::inRole('user')) {?>
+									<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
+								<?php }?>
 							</section>
 						</div>
 
@@ -190,7 +198,6 @@ vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
 			</div>
 		</div>
 	</div>
-	<?php }?>
 <!--
 <form action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
 login" method="post" class="pure-form pure-form-aligned bottom-margin">

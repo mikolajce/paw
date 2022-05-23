@@ -63,12 +63,12 @@
                         -->
                         <td>
 													{if \core\RoleUtils::inRole('admin')}
-                          	<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button small">Edytuj</a>
-														<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button alt small">Usuń</a>
+                          	<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button small">Edytuj</a>
+														<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
 													{elseif \core\RoleUtils::inRole('employee')}
-                          	<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button alt small">Edytuj</a>
+                          	<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button alt small">Edytuj</a>
 													{else}
-														<a href="{$conf->action_url}wip/{$row['id_produkt']}" class="button small">Wypożycz</a>
+														<a href="{$conf->action_url}wip" class="button small">Wypożycz</a>
 													{/if}
                         </td>
               				</tr>
@@ -82,7 +82,6 @@
 		</div>
 	</div>
 
-	{if \core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')}
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="row gtr-200">
@@ -108,17 +107,27 @@
 				<div class="col-8 col-12-medium imp-medium">
 						<div id="content">
 							<section class="last">
-								<h2>Chcesz dodać nowy produkt?</h2>
+								{if !\core\RoleUtils::inRole('user')}
+									<h2>Chcesz dodać nowy produkt?</h2>
+								{else}
+									<h2>Zapraszamy do zakupów!</h2>
+								{/if}
 								{if \core\RoleUtils::inRole('employee')}
 									<p>Jako <strong>pracownik</strong> możesz dodawać produkty do bazy danych.
 										<br>Spróbuj!
 									</p>
-								{else}
+								{elseif \core\RoleUtils::inRole('admin')}
 									<p>Jako <strong>administrator</strong> możesz dodawać i usuwać produkty z bazy danych.
 										<br>Spróbuj!
 									</p>
+								{else}
+									<p>Jako <strong>klient</strong> możesz wypożyczyć po jednym produkcie z naszej oferty.
+										<br>Spróbuj!
+									</p>
 								{/if}
-								<a href="{$conf->action_root}vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
+								{if !\core\RoleUtils::inRole('user')}
+									<a href="{$conf->action_root}vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
+								{/if}
 							</section>
 						</div>
 
@@ -126,7 +135,6 @@
 			</div>
 		</div>
 	</div>
-	{/if}
 <!--
 <form action="{$conf->action_root}login" method="post" class="pure-form pure-form-aligned bottom-margin">
 	<legend>Logowanie do systemu</legend>
