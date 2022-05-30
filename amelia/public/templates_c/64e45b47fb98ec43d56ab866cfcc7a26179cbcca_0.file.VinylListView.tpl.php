@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-23 17:01:07
+/* Smarty version 4.1.0, created on 2022-05-30 16:48:43
   from 'D:\xampp\htdocs\amelia\app\views\VinylListView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628ba1b35dd9e3_50299703',
+  'unifunc' => 'content_6294d94b9cb260_68417829',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64e45b47fb98ec43d56ab866cfcc7a26179cbcca' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\VinylListView.tpl',
-      1 => 1653318064,
+      1 => 1653922106,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628ba1b35dd9e3_50299703 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6294d94b9cb260_68417829 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1007282460628ba1b35ccfb4_34033878', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14722008996294d94b9b9103_75762004', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_1007282460628ba1b35ccfb4_34033878 extends Smarty_Internal_Block
+class Block_14722008996294d94b9b9103_75762004 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1007282460628ba1b35ccfb4_34033878',
+    0 => 'Block_14722008996294d94b9b9103_75762004',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -59,18 +59,23 @@ vinylList" method="post">
   								<div class="grid">
   									<div class="row gtr-50">
   										<p>Tytuł:</p>
-                      <input id="id_tytul" type="text" name="tytul" value="">
+                      <input id="id_tytul" type="text" name="tytul" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->tytul;?>
+">
                       <br>
                       <p>Artysta:</p>
-                      <input id="id_artysta" type="text" name="artysta" value="">
+                      <input id="id_artysta" type="text" name="artysta" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->artysta;?>
+">
                       <br>
                       <p>Data wydania:</p>
-                      <input id="id_data_wydania" type="text" name="data_wydania" value="">
+                      <input id="id_data_wydania" type="text" name="data_wydania" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->data_wydania;?>
+">
                       <br>
                       <p>Gatunek</p>
-                      <input id="id_gatunek" type="text" name="gatunek" value="">
+                      <input id="id_gatunek" type="text" name="gatunek" value="<?php echo $_smarty_tpl->tpl_vars['searchForm']->value->gatunek;?>
+">
+											<br>
+											<p>&nbsp;</p>
                       <br>
-                      <p>dagfa</p>
                       <input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
   									</div>
   								</div>
@@ -115,23 +120,27 @@ $_smarty_tpl->tpl_vars['row']->do_else = false;
 </td>
                         -->
                         <td>
-													<?php if (\core\RoleUtils::inRole('admin')) {?>
-                          	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+													<?php if (\core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')) {?>
+														<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 vinylEdit/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
 " class="button small">Edytuj</a>
-														<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+														<?php if (\core\RoleUtils::inRole('admin')) {?>
+															<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
 vinylDelete/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
 " class="button alt small">Usuń</a>
-													<?php } elseif (\core\RoleUtils::inRole('employee')) {?>
-                          	<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-vinylEdit/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
-" class="button alt small">Edytuj</a>
+														<?php }?>
 													<?php } else { ?>
 														<a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
-wip" class="button small">Wypożycz</a>
+vinylGet/<?php echo $_smarty_tpl->tpl_vars['row']->value['id_produkt'];?>
+" class="button small">Wypożycz</a>
 													<?php }?>
                         </td>
               				</tr>
+										<?php
+}
+if ($_smarty_tpl->tpl_vars['row']->do_else) {
+?>
+											<h2>Brak wyników dla wyszukiwania :(</h2>
               			<?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>

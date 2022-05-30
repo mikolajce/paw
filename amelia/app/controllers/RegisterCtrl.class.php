@@ -76,8 +76,7 @@ class RegisterCtrl{
 				]);
 				App::getDB()->insert("uzytkownikrola",[
 					"id_uzytkownik" => App::getDB()->id("uzytkownik"),
-					"id_rola" => "3",
-					"data_nadania" => "2001-04-27"
+					"id_rola" => "3", // NA SZTYWNO, DO POPRAWY
 				]);
 
 			} catch (\PDOException $e) {

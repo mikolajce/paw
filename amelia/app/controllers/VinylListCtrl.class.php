@@ -34,8 +34,12 @@ class VinylListCtrl {
     $this->validate();
 
     $search_params = [];
-    if(isset($this->form->tytul) && strlen($this->form->tytul) > 0)
+    if(isset($this->form->tytul) && strlen($this->form->tytul) > 0){
       $search_params['tytul[~]'] = $this->form->tytul . '%';
+    }
+    if(isset($this->form->artysta) && strlen($this->form->artysta) > 0){
+      $search_params['artysta[~]'] = $this->form->artysta . '%';
+    }
 
     $num_params = sizeof($search_params);
     if ($num_params < 1) {
@@ -58,9 +62,7 @@ class VinylListCtrl {
         "dodatki",
         "dostepnosc",
         "id_wypozyczalnia"
-      ],[
-        //"liczba_plyt[=]" => 4
-      ]);
+      ], $where);
     } catch (\PDOException $e) {
       Utils::addErrorMessage('BŁĄD BAZY DANYCH');
       if(App::getConf()->debug)

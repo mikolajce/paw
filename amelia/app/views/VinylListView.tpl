@@ -15,18 +15,19 @@
   								<div class="grid">
   									<div class="row gtr-50">
   										<p>Tytuł:</p>
-                      <input id="id_tytul" type="text" name="tytul" value="">
+                      <input id="id_tytul" type="text" name="tytul" value="{$searchForm->tytul}">
                       <br>
                       <p>Artysta:</p>
-                      <input id="id_artysta" type="text" name="artysta" value="">
+                      <input id="id_artysta" type="text" name="artysta" value="{$searchForm->artysta}">
                       <br>
                       <p>Data wydania:</p>
-                      <input id="id_data_wydania" type="text" name="data_wydania" value="">
+                      <input id="id_data_wydania" type="text" name="data_wydania" value="{$searchForm->data_wydania}">
                       <br>
                       <p>Gatunek</p>
-                      <input id="id_gatunek" type="text" name="gatunek" value="">
+                      <input id="id_gatunek" type="text" name="gatunek" value="{$searchForm->gatunek}">
+											<br>
+											<p>&nbsp;</p>
                       <br>
-                      <p>dagfa</p>
                       <input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
   									</div>
   								</div>
@@ -62,16 +63,18 @@
                         <td>{$row["gatunek"]}</td>
                         -->
                         <td>
-													{if \core\RoleUtils::inRole('admin')}
-                          	<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button small">Edytuj</a>
-														<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
-													{elseif \core\RoleUtils::inRole('employee')}
-                          	<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button alt small">Edytuj</a>
+													{if \core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')}
+														<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button small">Edytuj</a>
+														{if \core\RoleUtils::inRole('admin')}
+															<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
+														{/if}
 													{else}
-														<a href="{$conf->action_url}wip" class="button small">Wypożycz</a>
+														<a href="{$conf->action_url}vinylGet/{$row['id_produkt']}" class="button small">Wypożycz</a>
 													{/if}
                         </td>
               				</tr>
+										{foreachelse}
+											<h2>Brak wyników dla wyszukiwania :(</h2>
               			{/foreach}
                   </tbody>
                 </table>

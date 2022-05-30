@@ -5,7 +5,7 @@ namespace app\forms;
 class RegisterForm {
 	public $login;
 	public $pass;
-  public $firstname;
-  public $surname;
+  public $imie;
+  public $nazwisko;
   public $email;
 }

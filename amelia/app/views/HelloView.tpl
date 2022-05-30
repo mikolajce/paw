@@ -57,10 +57,17 @@
 								<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
 								<div class="inner">
 									<header>
-										<h2>An interesting title</h2>
-										<p>This is also an interesting subtitle</p>
+										<h2>Rap na wosku</h2>
+										<br>
+										<p>Westside Gunn powraca z kolejną odsłoną swojego flagowego projektu i poraz kolejny zachwyca swoim jazzrapowym brzmieniem i charakterystycznym przekazem.</p>
 									</header>
-									<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									<p><a href="
+										{if count($conf->roles)>0}
+											{$conf->action_root}vinylList
+										{else}
+											{$conf->action_root}loginShow
+										{/if}
+									" class="button small icon solid fa-arrow-circle-right">Hitler Wears Hermes</a></p>
 								</div>
 							</section>
 
@@ -72,10 +79,12 @@
 								<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
 								<div class="inner">
 									<header>
-										<h2>Oh, and finally ...</h2>
+										<h2>Przekaż opinię</h2>
+										<br>
+										<p>Chcesz coś nam przekazać? Napisz do nas!</p>
 										<p>Here's another intriguing subtitle</p>
 									</header>
-									<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									<p><a href="{$conf->action_wip}" class="button small icon solid fa-arrow-circle-right">Kontakt</a></p>
 								</div>
 							</section>
 

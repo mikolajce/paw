@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.0, created on 2022-05-22 15:02:23
+/* Smarty version 4.1.0, created on 2022-05-29 13:48:37
   from 'D:\xampp\htdocs\amelia\app\views\HelloView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.0',
-  'unifunc' => 'content_628a345fb3b6b6_71072436',
+  'unifunc' => 'content_62935d95b011d3_52386254',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0a33f6ccdab378a1704040415c08fc8fbb6ebbab' => 
     array (
       0 => 'D:\\xampp\\htdocs\\amelia\\app\\views\\HelloView.tpl',
-      1 => 1653223822,
+      1 => 1653824915,
       2 => 'file',
     ),
   ),
@@ -20,25 +20,25 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_628a345fb3b6b6_71072436 (Smarty_Internal_Template $_smarty_tpl) {
+function content_62935d95b011d3_52386254 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1950409618628a345fb34298_86789734', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_75472046862935d95af94c4_27220825', 'content');
 ?>
 
 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'content'} */
-class Block_1950409618628a345fb34298_86789734 extends Smarty_Internal_Block
+class Block_75472046862935d95af94c4_27220825 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1950409618628a345fb34298_86789734',
+    0 => 'Block_75472046862935d95af94c4_27220825',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -103,10 +103,19 @@ info" class="button alt large icon solid fa-question-circle">Więcej info</a></l
 								<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
 								<div class="inner">
 									<header>
-										<h2>An interesting title</h2>
-										<p>This is also an interesting subtitle</p>
+										<h2>Rap na wosku</h2>
+										<br>
+										<p>Westside Gunn powraca z kolejną odsłoną swojego flagowego projektu i poraz kolejny zachwyca swoim jazzrapowym brzmieniem i charakterystycznym przekazem.</p>
 									</header>
-									<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									<p><a href="
+										<?php if (count($_smarty_tpl->tpl_vars['conf']->value->roles) > 0) {?>
+											<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+vinylList
+										<?php } else { ?>
+											<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_root;?>
+loginShow
+										<?php }?>
+									" class="button small icon solid fa-arrow-circle-right">Hitler Wears Hermes</a></p>
 								</div>
 							</section>
 
@@ -118,10 +127,13 @@ info" class="button alt large icon solid fa-question-circle">Więcej info</a></l
 								<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
 								<div class="inner">
 									<header>
-										<h2>Oh, and finally ...</h2>
+										<h2>Przekaż opinię</h2>
+										<br>
+										<p>Chcesz coś nam przekazać? Napisz do nas!</p>
 										<p>Here's another intriguing subtitle</p>
 									</header>
-									<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+									<p><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_wip;?>
+" class="button small icon solid fa-arrow-circle-right">Kontakt</a></p>
 								</div>
 							</section>
 
