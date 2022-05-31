@@ -80,11 +80,9 @@ class VinylEditCtrl {
   }
 
   public function validateEdit(){
-    if (isset($this->form->id_produkt)) {
       $this->form->id_produkt = ParamUtils::getFromCleanURL(1, true, 'Błąd wywołania aplikacji');
       return !App::getMessages()->isError();
-    }
-    return 0;
+    
   }
 
   public function action_vinylNew(){
@@ -93,6 +91,7 @@ class VinylEditCtrl {
 
   public function action_vinylEdit() {
     if($this->validateEdit()){
+		Utils::addInfoMessage('udane');
       try {
         $record = App::getDB()->get("produkt" , "*" , [
           "id_produkt" => $this->form->id_produkt

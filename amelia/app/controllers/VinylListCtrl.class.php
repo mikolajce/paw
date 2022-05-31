@@ -22,6 +22,7 @@ class VinylListCtrl {
     $this->form->artysta = ParamUtils::getFromRequest('artysta');
     $this->form->data_wydania = ParamUtils::getFromRequest('data_wydania');
     $this->form->gatunek = ParamUtils::getFromRequest('gatunek');
+	//$this->form->liczba_plyt = '%';
   }
 
   public function validate(){
@@ -40,9 +41,18 @@ class VinylListCtrl {
     if(isset($this->form->artysta) && strlen($this->form->artysta) > 0){
       $search_params['artysta[~]'] = $this->form->artysta . '%';
     }
+	if(isset($this->form->data_wydania) && strlen($this->form->data_wydania) > 0){
+      $search_params['data_wydania[~]'] = $this->form->data_wydania . '%';
+    }
+	if(isset($this->form->gatunek) && strlen($this->form->gatunek) > 0){
+      $search_params['gatunek[~]'] = $this->form->gatunek . '%';
+    }
+	if(isset($this->form->liczba_plyt) && strlen($this->form->liczba_plyt) > 0){
+      $search_params['liczba_plyt[~]'] = $this->form->liczba_plyt . '%';
+    }
 
     $num_params = sizeof($search_params);
-    if ($num_params < 1) {
+    if ($num_params > 1) {
       $where = ["AND" => &$search_params];
     } else
       $where = &$search_params;

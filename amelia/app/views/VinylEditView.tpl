@@ -32,21 +32,21 @@
 							<section class="last">
 								<h2>Jaki produkt chcesz dodać?</h2>
                 <h4>Tytuł:</h4>
-								<input id="id_tytul" type="text" name="tytul" value="">
+				<input id="id_tytul" type="text" name="tytul" value="{$form->tytul}">
                 <h4>Artysta:</h4>
-                <input id="id_artysta" type="text" name="artysta" value="">
+                <input id="id_artysta" type="text" name="artysta" value="{$form->artysta}">
                 <h4>Data wydania:</h4>
-                <input id="id_data_wydania" type="text" name="data_wydania" placeholder="np. 2014" value="">
+                <input id="id_data_wydania" type="text" name="data_wydania" placeholder="np. 2014" value="{$form->data_wydania}">
                 <h4>Gatunek:</h4>
-                <input id="id_gatunek" type="text" name="gatunek" value="">
+                <input id="id_gatunek" type="text" name="gatunek" value="{$form->gatunek}">
                 <h4>Liczba płyt:</h4>
-                <input id="id_liczba_plyt" type="text" name="liczba_plyt" value="">
+                <input id="id_liczba_plyt" type="text" name="liczba_plyt" value="{$form->liczba_plyt}">
                 <h4>Długość:</h4>
-                <input id="id_dlugosc" type="text" name="dlugosc" placeholder="mm:ss" value="">
+                <input id="id_dlugosc" type="text" name="dlugosc" placeholder="mm:ss" value="{$form->dlugosc}">
                 <h4>Dodatki:</h4>
-                <input id="id_dodatki" type="text" name="dodatki" placeholder="opis słowny dodatkowej zawartości" value="">
+                <input id="id_dodatki" type="text" name="dodatki" placeholder="opis słowny dodatkowej zawartości" value="{$form->dodatki}">
                 <h4>Dostępność:</h4>
-                <input id="id_dostepnosc" type="text" name="dostepnosc" value="">
+                <input id="id_dostepnosc" type="text" name="dostepnosc" value="{$form->dostepnosc}">
                 <h4>Wypożyczalnia:</h4>
 
                 <select id="id_wypozyczalnia" name="wypozyczalnia">
@@ -57,12 +57,11 @@
                   {/foreach}
                 </select>
 
-                <br> <h2>????????</h2>
-                <!--
-                <input type="hidden" name="id_wypozyczalnia" value="{$form->id_wypozyczalnia}">
+                <br>
+                
 
 								<input type="hidden" name="id_produkt" value="{$form->id_produkt}">
-								-->
+								
 								<input type="submit" name="Dodaj" value="Dodaj" class="button icon solid fa-arrow-circle-right">
 								<p></p>
 							</section>

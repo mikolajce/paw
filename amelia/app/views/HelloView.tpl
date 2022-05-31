@@ -11,17 +11,13 @@
 				</div>
 				<div class="col-5 col-12-medium">
 					<ul>
-						<li><a href="
-							{if count($conf->roles)>0}
-								{$conf->action_root}vinylList
-							{else}
-								{$conf->action_root}loginShow
-							{/if}
-						" class="button large icon solid fa-arrow-circle-right">
+						<li><a href="{$conf->action_root}vinylList" class="button large icon solid fa-arrow-circle-right">
 							{if \core\RoleUtils::inRole('employee') || \core\RoleUtils::inRole('admin')}
 								Zarządzaj
-							{else}
+							{elseif \core\RoleUtils::inRole('user')}
 								Wypożycz
+							{else}
+								Przeglądaj
 							{/if}
 							</a></li>
 						<li><a href="{$conf->action_root}info" class="button alt large icon solid fa-question-circle">Więcej info</a></li>

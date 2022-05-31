@@ -28,6 +28,7 @@
 											<br>
 											<p>&nbsp;</p>
                       <br>
+						<input id="liczba_plyt" type="hidden" name="liczba_plyt value="%">
                       <input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
   									</div>
   								</div>
@@ -69,7 +70,13 @@
 															<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
 														{/if}
 													{else}
-														<a href="{$conf->action_url}vinylGet/{$row['id_produkt']}" class="button small">Wypożycz</a>
+														<a href="
+															{if \core\RoleUtils::inRole('user')}
+																{$conf->action_url}vinylGet/{$row['id_produkt']}
+															{else}
+																{$conf->action_root}loginShow
+															{/if}
+														" class="button small">Wypożycz</a>
 													{/if}
                         </td>
               				</tr>
