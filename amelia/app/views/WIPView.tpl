@@ -29,6 +29,7 @@
 				</tr>
 			{/foreach}
 		</table>
+		<p>test id zamowienia: {$costam}</p>
 		</div>
 	</div>
 {/block}

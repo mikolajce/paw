@@ -65,13 +65,13 @@ class LoginCtrl{
 				RoleUtils::addRole("admin");
 			} else if ($this->form->login && $this->form->pass == "employee") {
 				RoleUtils::addRole("employee");
-			}	else
+			}	else {
 				RoleUtils::addRole("user");
 				App::getDB()->insert("wypozyczenie",[
 					"id_uzytkownik" => SessionUtils::load("global_user_id", true),
 				]);
-				$var_global_order_id = App::getDB()->id("wypozyczenie");
-				SessionUtils::store("global_order_id", $var_global_order_id);
+				SessionUtils::store("global_order_id", App::getDB()->id("wypozyczenie"));
+				}
 		} else {
 			Utils::addErrorMessage('Niepoprawny login lub hasło');
 		}
@@ -96,9 +96,16 @@ class LoginCtrl{
 
 	public function action_logout(){
 		session_destroy();
-		App::getDB()->delete("wypozyczenie",[
-			"zakonczone" => "0"
-		]);
+		try {
+			App::getDB()->delete("wypozyczenie",[
+				"zakonczone" => "0"
+			]);
+		} catch (\PDOException $e) {
+			Utils::addErrorMessage('Wystąpił błąd modyfikacji zamówień podczas wylogowywania');
+			if (App::getConf()->debug)
+					Utils::addErrorMessage($e->getMessage());
+		}
+
 		App::getRouter()->redirectTo('hello');
 	}
 

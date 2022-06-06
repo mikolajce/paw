@@ -16,12 +16,13 @@
                   <thead>
                     <th>Produkt</th>
                     <th>Zamówienie</th>
-                    <th></th>
+                    <th>Modyfikacja</th>
                   </thead>
                   <tbody>
                     {foreach $cart as $row}
               				<tr>
               					<td>{$row["id_produkt"]}</td>
+												<td>{$row["id_wypozyczenie"]}</td>
                         <td>
 														<a href="{$conf->action_url}cartDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
                         </td>
@@ -45,7 +46,7 @@
                   <p>Suma zakupów:&nbsp;<strong>20,00 zł</strong></p>
                   <p>Pamiętaj: kliknięcie Zakup spowoduje jedynie rezerwację wybranych produktów. Można będzie je odebrać osobiście w odpowiednich wypożyczalniach.</p>
   								<div class="grid">
-                      <input type="button" name="Filtruj" value="Zakup" class="button icon fa-arrow-circle-right">
+                    <a href="{$conf->action_root}cartFinalize" class="button icon fa-file-alt">Zakup</a>
   								</div>
 							</section>
 						</div>

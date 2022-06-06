@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 09:49 AM
+-- Generation Time: Jun 06, 2022 at 04:49 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -51,6 +51,7 @@ INSERT INTO `produkt` (`id_produkt`, `tytul`, `artysta`, `data_wydania`, `gatune
 (4, 'Koło', 'Lordofon', '2020', 'rock', 2, '30:07:00', '-', 1, 1),
 (5, '2014 Forest Hills Drive', 'J. Cole', '2014', 'rap', 2, '61:04:00', '-', 1, 1),
 (6, 'Hitler Wears Hermes 8:', 'Westside Gunn', '2021', 'rap', 4, '103:18:00', '-', 1, 1),
+(7, 'Scaled And Icy', 'Twenty One Pilots', '2021', 'rock', 2, '37:42:00', '-', 0, 2),
 (20, 'Polska Floryda', 'Szczyl', '2021', 'rap', 2, '38:56:00', '-', 1, 2);
 
 -- --------------------------------------------------------
@@ -97,7 +98,8 @@ INSERT INTO `uzytkownik` (`id_uzytkownik`, `login`, `pass`, `imie`, `nazwisko`, 
 (1, 'admin', 'admin', 'Mikołaj', 'Cieśliczka', 'test@mail.com'),
 (2, 'employee', 'employee', 'Bonifacy', 'Bęcwał', 'ga@mon.com'),
 (3, 'user', 'user', 'Adam', 'Nowak', 'jego@mail.com'),
-(8, 'test', 'owe', 'smieszne', 'tomek', 'hehe');
+(8, 'test', 'owe', 'smieszne', 'tomek', 'hehe'),
+(9, 'iiirir', 'iririe', 'agd', 'itue', 'mikolajce@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -120,7 +122,8 @@ INSERT INTO `uzytkownikrola` (`id_rola`, `id_uzytkownik`, `data_nadanie`, `data_
 (1, 1, '2022-05-22', '2022-05-22'),
 (2, 2, '2022-05-22', NULL),
 (3, 3, '2022-05-22', NULL),
-(3, 8, '0000-00-00', NULL);
+(3, 8, '0000-00-00', NULL),
+(3, 9, '2022-06-06', NULL);
 
 -- --------------------------------------------------------
 
@@ -132,6 +135,16 @@ CREATE TABLE `wypozprodukt` (
   `id_wypozyczenie` int(11) NOT NULL,
   `id_produkt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `wypozprodukt`
+--
+
+INSERT INTO `wypozprodukt` (`id_wypozyczenie`, `id_produkt`) VALUES
+(7, 4),
+(9, 6),
+(11, 6),
+(12, 2);
 
 -- --------------------------------------------------------
 
@@ -162,10 +175,24 @@ INSERT INTO `wypozyczalnia` (`id_wypozyczalnia`, `ulica`, `miasto`) VALUES
 CREATE TABLE `wypozyczenie` (
   `id_wypozyczenie` int(11) NOT NULL,
   `id_uzytkownik` int(11) NOT NULL,
-  `data` date NOT NULL,
-  `zwrot` date NOT NULL,
-  `cena` double NOT NULL
+  `data` date DEFAULT NULL,
+  `zwrot` date DEFAULT NULL,
+  `cena` double DEFAULT 0,
+  `zakonczone` bit(1) DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `wypozyczenie`
+--
+
+INSERT INTO `wypozyczenie` (`id_wypozyczenie`, `id_uzytkownik`, `data`, `zwrot`, `cena`, `zakonczone`) VALUES
+(7, 3, NULL, NULL, 0, b'0'),
+(8, 3, NULL, NULL, 0, b'0'),
+(9, 8, NULL, NULL, 0, b'0'),
+(10, 8, NULL, NULL, 0, b'0'),
+(11, 3, NULL, NULL, 0, b'0'),
+(12, 3, NULL, NULL, 0, b'1'),
+(13, 3, NULL, NULL, 0, b'0');
 
 --
 -- Indexes for dumped tables
@@ -231,13 +258,13 @@ ALTER TABLE `produkt`
 -- AUTO_INCREMENT for table `uzytkownik`
 --
 ALTER TABLE `uzytkownik`
-  MODIFY `id_uzytkownik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_uzytkownik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `wypozyczenie`
 --
 ALTER TABLE `wypozyczenie`
-  MODIFY `id_wypozyczenie` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_wypozyczenie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

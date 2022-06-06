@@ -6,6 +6,7 @@ use core\App;
 use core\Message;
 use core\Utils;
 use core\ParamUtils;
+use core\SessionUtils;
 use core\Validator;
 use app\forms\VinylEditForm;
 //use lib\Medoo;
@@ -181,7 +182,8 @@ class VinylEditCtrl {
   public function action_vinylGet(){
     try {
       App::getDB()->insert("wypozprodukt",[
-        "id_wypozyczenie" => App::getDB()->id("wypozyczenie"),
+        "id_wypozyczenie" => SessionUtils::load("global_order_id", true),
+        //"id_wypozyczenie" => App::getDB()->id("wypozyczenie"),
         "id_produkt" => ParamUtils::getFromCleanURL(1)
       ]);
     } catch (\PDOException $e) {
