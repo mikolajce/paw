@@ -6,13 +6,14 @@ use core\App;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\SessionUtils;
+use core\Validator;
 use app\forms\LoginForm;
 
 class LoginCtrl{
 	private $form;
 
 	public function __construct(){
-		//stworzenie potrzebnych obiektów
 		$this->form = new LoginForm();
 	}
 
@@ -23,17 +24,24 @@ class LoginCtrl{
 
 	public function validate() {
 		$this->getParams();
+		$v = new Validator();
 
-		//nie ma sensu walidować dalej, gdy brak parametrów
 		if (!isset($this->form->login)) return false;
 
-		// sprawdzenie, czy potrzebne wartości zostały przekazane
-		if (empty($this->form->login)) {
-			Utils::addErrorMessage('Nie podano loginu');
-		}
-		if (empty($this->form->pass)) {
-			Utils::addErrorMessage('Nie podano hasła');
-		}
+		$this->form->login = $v->validateFromPost('login', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Nie podano loginu",
+							'min_length' => 1,
+							'validator_message' => "Login niepoprawny"
+		]);
+		$this->form->pass = $v->validateFromPost('pass', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Wprowadź hasło",
+							'min_length' => 1,
+							'validator_message' => "Hasło niepoprawne"
+		]);
 
 		//nie ma sensu walidować dalej, gdy brak wartości
 		if (App::getMessages()->isError()) return false;
@@ -45,24 +53,28 @@ class LoginCtrl{
 			"login" => $this->form->login,
 			"pass" => $this->form->pass			]))
 		{
+			$var_user_id = App::getDB()->get("uzytkownik","id_uzytkownik",[
+				"login" => $this->form->login
+			]);
+			SessionUtils::store("global_user_id", $var_user_id);
+			$var_username = App::getDB()->get("uzytkownik","imie",[
+				"login" => $this->form->login
+			]);
+			SessionUtils::store("global_username", $var_username);
 			if ($this->form->login && $this->form->pass == "admin") {
 				RoleUtils::addRole("admin");
 			} else if ($this->form->login && $this->form->pass == "employee") {
 				RoleUtils::addRole("employee");
 			}	else
 				RoleUtils::addRole("user");
+				App::getDB()->insert("wypozyczenie",[
+					"id_uzytkownik" => SessionUtils::load("global_user_id", true),
+				]);
+				$var_global_order_id = App::getDB()->id("wypozyczenie");
+				SessionUtils::store("global_order_id", $var_global_order_id);
 		} else {
 			Utils::addErrorMessage('Niepoprawny login lub hasło');
 		}
-
-		/*if ($this->form->login == "admin" && $this->form->pass == "admin") {
-			RoleUtils::addRole('admin');
-		} else if ($this->form->login == "user" && $this->form->pass == "user") {
-			RoleUtils::addRole('user');
-		} else {
-			Utils::addErrorMessage('Niepoprawny login lub hasło');
-		}
-		*/
 		return !App::getMessages()->isError();
 	}
 
@@ -84,6 +96,9 @@ class LoginCtrl{
 
 	public function action_logout(){
 		session_destroy();
+		App::getDB()->delete("wypozyczenie",[
+			"zakonczone" => "0"
+		]);
 		App::getRouter()->redirectTo('hello');
 	}
 

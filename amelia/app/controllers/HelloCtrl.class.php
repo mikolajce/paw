@@ -5,17 +5,14 @@ namespace app\controllers;
 use core\App;
 use core\Message;
 use core\Utils;
+use core\SessionUtils;
 
 class HelloCtrl {
 
     public function action_hello() {
-
-        $variable = 123;
-
-        App::getMessages()->addMessage(new Message("Hej.", Message::INFO));
-        Utils::addInfoMessage("Co Cię sprowadza?");
-
-        App::getSmarty()->assign("value",$variable);
+        $name_display = SessionUtils::load("var_username", true);
+        App::getSmarty()->assign("name", $name_display);
+        Utils::addInfoMessage("Hej. Co Cię sprowadza? $name_display");
         App::getSmarty()->display("HelloView.tpl");
 
     }

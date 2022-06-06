@@ -6,6 +6,8 @@ use core\App;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\SessionUtils;
+use core\Validator;
 use app\forms\RegisterForm;
 
 class RegisterCtrl{
@@ -27,31 +29,52 @@ class RegisterCtrl{
 	public function validate() {
 		$this->getParams();
 
+		$v = new Validator();
+
 		//nie ma sensu walidować dalej, gdy brak parametrów
 		if (!isset($this->form->login)) return false;
 
 		// sprawdzenie, czy potrzebne wartości zostały przekazane
-		if (empty($this->form->login)) {
-			Utils::addErrorMessage('Nie podano loginu.');
-		}
-		if (empty($this->form->pass)) {
-			Utils::addErrorMessage('Nie podano hasła.');
-		}
-		if (empty($this->form->imie)) {
-			Utils::addErrorMessage('Nie podano imienia.');
-		}
-		if (empty($this->form->nazwisko)) {
-			Utils::addErrorMessage('Nie podano nazwiska.');
-		}
-		if (empty($this->form->email)) {
-			Utils::addErrorMessage('Nie podano adresu email.');
-		}
+		$this->form->login = $v->validateFromPost('login', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Nie podano loginu",
+							'min_length' => 1,
+							'validator_message' => "Login niepoprawny"
+		]);
+		$this->form->pass = $v->validateFromPost('pass', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Wprowadź hasło",
+							'min_length' => 1,
+							'validator_message' => "Hasło niepoprawne"
+		]);
+		$this->form->imie = $v->validateFromPost('imie', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Wprowadź imię",
+							//'regexp' => \p{L},
+							'min_length' => 1,
+							'validator_message' => "Imię powinno składać się wyłącznie z liter"
+		]);
+		$this->form->nazwisko = $v->validateFromPost('nazwisko', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Wprowadź nazwisko",
+							//'regexp' => \p{L},
+							'min_length' => 1,
+							'validator_message' => "Nazwisko powinno składać się wyłącznie z liter"
+		]);
+		$this->form->email = $v->validateFromPost('email', [
+							'trim' => true,
+							'required' => true,
+							'required_message' => "Wprowadź email",
+							'email' => true,
+							'min_length' => 1,
+							'validator_message' => "Wprowadź poprawny adres email"
+		]);
 
-		//nie ma sensu walidować dalej, gdy brak wartości
 		if (App::getMessages()->isError()) return false;
-
-		// sprawdzenie, czy dane logowania poprawne
-		// (takie informacje najczęściej przechowuje się w bazie danych)
 
 		if (App::getDB()->has("uzytkownik", ["login" => $this->form->login])) {
 			Utils::addErrorMessage('Konto już istnieje.');
@@ -76,9 +99,16 @@ class RegisterCtrl{
 				]);
 				App::getDB()->insert("uzytkownikrola",[
 					"id_uzytkownik" => App::getDB()->id("uzytkownik"),
-					"id_rola" => "3", // NA SZTYWNO, DO POPRAWY
+					"id_rola" => "3", // USER
 				]);
-
+				$var_user_id = App::getDB()->get("uzytkownik","id_uzytkownik",[
+					"login" => $this->form->login
+				]);
+				SessionUtils::store("global_user_id", $var_user_id);
+				$var_username = App::getDB()->get("uzytkownik","imie",[
+					"login" => $this->form->login
+				]);
+				SessionUtils::store("global_username", $var_username);
 			} catch (\PDOException $e) {
 				Utils::addErrorMessage('BŁĄD BAZY DANYCH');
 				if(App::getConf()->debug)

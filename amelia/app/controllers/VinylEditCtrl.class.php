@@ -8,7 +8,7 @@ use core\Utils;
 use core\ParamUtils;
 use core\Validator;
 use app\forms\VinylEditForm;
-use lib\Medoo;
+//use lib\Medoo;
 
 class VinylEditCtrl {
   private $form;
@@ -39,34 +39,78 @@ class VinylEditCtrl {
     if(App::getMessages()->isError())
       return false;
 
-    if (empty(trim($this->form->tytul))) {
-        Utils::addErrorMessage('Wprowadź tytuł');
-    }
-    if (empty(trim($this->form->artysta))) {
-        Utils::addErrorMessage('Wprowadź artystę');
-    }
-    if (empty(trim($this->form->data_wydania))) {
-        Utils::addErrorMessage('Wprowadź datę wydania');
-    }
-    if (empty(trim($this->form->gatunek))) {
-        Utils::addErrorMessage('Wprowadź gatunek');
-    }
-    if (empty(trim($this->form->liczba_plyt))) {
-        Utils::addErrorMessage('Wprowadź liczbę płyt');
-    }
-    if (empty(trim($this->form->dlugosc))) {
-        Utils::addErrorMessage('Wprowadź długość');
-    }
-    if (empty(trim($this->form->dodatki))) {
-        Utils::addErrorMessage('Wprowadź dodatki');
-    }
-    if (empty(trim($this->form->dostepnosc))) {
-        Utils::addErrorMessage('Wprowadź dostepnosc');
-    }
-    if (empty(trim($this->form->id_wypozyczalnia))) {
-        Utils::addErrorMessage($this->form->id_wypozyczalnia);
-        Utils::addErrorMessage('Wprowadź wypożyczalnię');
-    }
+    $v = new Validator();
+
+    $this->form->tytul = $v->validateFromPost('tytul', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź tytuł",
+              'min_length' => 1,
+              'validator_message' => "Tytuł niepoprawny"
+    ]);
+    $this->form->artysta = $v->validateFromPost('artysta', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź artystę",
+              'min_length' => 1,
+              'validator_message' => "Artysta niepoprawny"
+    ]);
+    $this->form->data_wydania = $v->validateFromPost('data_wydania', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź datę",
+              'numeric' => true,
+              'min_length' => 4,
+              'max_lenght' => 4,
+              'validator_message' => "Data powinna składać się z 4 cyfr"
+    ]);
+    $this->form->gatunek = $v->validateFromPost('gatunek', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź gatunek",
+              'numeric' => false,
+              'min_length' => 1,
+              'validator_message' => "Gatunek niepoprawny"
+    ]);
+    $this->form->liczba_plyt = $v->validateFromPost('liczba_plyt', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź liczbę płyt",
+              'numeric' => true,
+              'min_length' => 1,
+              'max_lenght' => 2,
+              'validator_message' => "Żaden album nie jest aż tak wielki ;~~)"
+    ]);
+    $this->form->dlugosc = $v->validateFromPost('dlugosc', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź długość",
+              'min_length' => 1,
+              'regexp' => [],
+              'validator_message' => "Podaj zapis mm:ss"
+    ]);
+    $this->form->dodatki = $v->validateFromPost('dodatki', [
+              'trim' => true,
+              'required' => false,
+              'required_message' => "Podaj dodatki - jeśli nie ma wpisz ' - '",
+              'min_length' => 1,
+              'validator_message' => "Podaj dodatki - jeśli nie ma wpisz ' - '"
+    ]);
+    $this->form->dostepnosc = $v->validateFromPost('dostepnosc', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Wprowadź dostępność",
+              'numeric' => true,
+              'min_length' => 1,
+              'validator_message' => "Podaj dostępną ilość asortymentu"
+    ]);
+    $this->form->id_wypozyczalnia = $v->validateFromPost('id_wypozyczalnia', [
+              'trim' => true,
+              'required' => true,
+              'required_message' => "Podaj wypożyczalnię",
+              'min_length' => 1,
+              'validator_message' => "Zła wypożyczalnia"
+    ]);
 
     if(App::getMessages()->isError())
       return false;
@@ -82,7 +126,7 @@ class VinylEditCtrl {
   public function validateEdit(){
       $this->form->id_produkt = ParamUtils::getFromCleanURL(1, true, 'Błąd wywołania aplikacji');
       return !App::getMessages()->isError();
-    
+
   }
 
   public function action_vinylNew(){
@@ -135,6 +179,17 @@ class VinylEditCtrl {
   }
 
   public function action_vinylGet(){
+    try {
+      App::getDB()->insert("wypozprodukt",[
+        "id_wypozyczenie" => App::getDB()->id("wypozyczenie"),
+        "id_produkt" => ParamUtils::getFromCleanURL(1)
+      ]);
+    } catch (\PDOException $e) {
+      Utils::addErrorMessage('Wystąpił błąd podczas dodawania produktu do koszyka');
+      if (App::getConf()->debug)
+          Utils::addErrorMessage($e->getMessage());
+    }
+    App::getRouter()->redirectTo('vinylList');
 
   }
 
@@ -153,7 +208,7 @@ class VinylEditCtrl {
               "dlugosc" => $this->form->dlugosc,
               "dodatki" => $this->form->dodatki,
               "dostepnosc" => $this->form->dostepnosc,
-              "id_wypozyczalnia" => $this->form->id_wypozyczalnia, // NA SZTYWNO, DO POPRAWY
+              "id_wypozyczalnia" => $this->form->id_wypozyczalnia,
             ]);
           } else {
             Utils::addInfoMessage('Maksymalna ilość produktów osiągnięta');

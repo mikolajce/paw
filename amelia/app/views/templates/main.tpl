@@ -23,14 +23,16 @@
 								<h1><a href="{$conf->action_root}hello">Vinylove</a></h1>
 								<span>
 									{if \core\RoleUtils::inRole('admin')}
-										Hej, Mikołaj!
+										Siemson mordziaty
 									{elseif \core\RoleUtils::inRole('employee')}
 										Hej, pracowniku!
 									{elseif \core\RoleUtils::inRole('user')}
-										Zalogowano jako user
+										Zalogowano jako
+										<!--{$name_display}-->
+										<!--ZAIMPLEMENTOWAĆ NAZWĘ UŻYTKOWNIKA-->
 									{else}
-										Witaj, nieznajomy!
-									{/if}<!--implement username-->
+										Dzień dobry!
+									{/if}
 								</span>
 
 							</div>
@@ -66,14 +68,11 @@
 									{else}
 										<li class="current"><a href="{$conf->action_root}loginShow">Zaloguj</a></li>
 									{/if}
+									<li><a href="{$conf->action_root}vinylList">Wypożycz</a></li>
 									<li>
-										<a href="
-											{if count($conf->roles)>0}
-												{$conf->action_root}vinylList
-											{else}
-												{$conf->action_root}loginShow
-											{/if}
-										">Wypożycz</a></li>
+										{if \core\RoleUtils::inRole('user')}
+											<a href="{$conf->action_root}cartList">Koszyk</a></li></li>
+										{/if}
 									<li>
 										<a href="{$conf->action_root}wip">O nas</a>
 										<ul>

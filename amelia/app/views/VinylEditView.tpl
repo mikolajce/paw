@@ -32,7 +32,7 @@
 							<section class="last">
 								<h2>Jaki produkt chcesz dodać?</h2>
                 <h4>Tytuł:</h4>
-				<input id="id_tytul" type="text" name="tytul" value="{$form->tytul}">
+								<input id="id_tytul" type="text" name="tytul" value="{$form->tytul}">
                 <h4>Artysta:</h4>
                 <input id="id_artysta" type="text" name="artysta" value="{$form->artysta}">
                 <h4>Data wydania:</h4>
@@ -58,10 +58,10 @@
                 </select>
 
                 <br>
-                
+
 
 								<input type="hidden" name="id_produkt" value="{$form->id_produkt}">
-								
+
 								<input type="submit" name="Dodaj" value="Dodaj" class="button icon solid fa-arrow-circle-right">
 								<p></p>
 							</section>

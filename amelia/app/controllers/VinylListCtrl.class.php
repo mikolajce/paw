@@ -6,6 +6,7 @@ use core\App;
 use core\Message;
 use core\Utils;
 use core\ParamUtils;
+use core\Validator;
 use app\forms\VinylSearchForm;
 
 class VinylListCtrl {
@@ -22,7 +23,6 @@ class VinylListCtrl {
     $this->form->artysta = ParamUtils::getFromRequest('artysta');
     $this->form->data_wydania = ParamUtils::getFromRequest('data_wydania');
     $this->form->gatunek = ParamUtils::getFromRequest('gatunek');
-	//$this->form->liczba_plyt = '%';
   }
 
   public function validate(){
@@ -34,21 +34,52 @@ class VinylListCtrl {
   public function action_vinylList() {
     $this->validate();
 
+    $v = new Validator();
+
     $search_params = [];
+
     if(isset($this->form->tytul) && strlen($this->form->tytul) > 0){
+      $this->form->tytul = $v->validateFromPost('tytul', [
+                'trim' => true,
+                'required' => true,
+                'required_message' => "",
+                'min_length' => 1,
+                'validator_message' => "Tytuł niepoprawny"
+      ]);
       $search_params['tytul[~]'] = $this->form->tytul . '%';
     }
     if(isset($this->form->artysta) && strlen($this->form->artysta) > 0){
+      $this->form->artysta = $v->validateFromPost('artysta', [
+                'trim' => true,
+                'required' => true,
+                'required_message' => "Wprowadź artystę",
+                'min_length' => 1,
+                'validator_message' => "Artysta niepoprawny"
+      ]);
       $search_params['artysta[~]'] = $this->form->artysta . '%';
     }
-	if(isset($this->form->data_wydania) && strlen($this->form->data_wydania) > 0){
+	  if(isset($this->form->data_wydania) && strlen($this->form->data_wydania) > 0){
+      $this->form->data_wydania = $v->validateFromPost('data_wydania', [
+                'trim' => true,
+                'required' => true,
+                'required_message' => "Wprowadź datę",
+                'numeric' => true,
+                'min_length' => 4,
+                'max_lenght' => 4,
+                'validator_message' => "Data powinna składać się z 4 cyfr"
+      ]);
       $search_params['data_wydania[~]'] = $this->form->data_wydania . '%';
     }
-	if(isset($this->form->gatunek) && strlen($this->form->gatunek) > 0){
+	  if(isset($this->form->gatunek) && strlen($this->form->gatunek) > 0){
+      $this->form->gatunek = $v->validateFromPost('gatunek', [
+                'trim' => true,
+                'required' => true,
+                'required_message' => "Wprowadź gatunek",
+                'numeric' => false,
+                'min_length' => 1,
+                'validator_message' => "Gatunek niepoprawny"
+      ]);
       $search_params['gatunek[~]'] = $this->form->gatunek . '%';
-    }
-	if(isset($this->form->liczba_plyt) && strlen($this->form->liczba_plyt) > 0){
-      $search_params['liczba_plyt[~]'] = $this->form->liczba_plyt . '%';
     }
 
     $num_params = sizeof($search_params);
@@ -56,9 +87,6 @@ class VinylListCtrl {
       $where = ["AND" => &$search_params];
     } else
       $where = &$search_params;
-
-
-    //$where ["ORDER"] = "tytul";
 
     try {
       $this->records = App::getDB()->select("produkt" , [
@@ -72,7 +100,9 @@ class VinylListCtrl {
         "dodatki",
         "dostepnosc",
         "id_wypozyczalnia"
-      ], $where);
+      ],
+        $where
+      );
     } catch (\PDOException $e) {
       Utils::addErrorMessage('BŁĄD BAZY DANYCH');
       if(App::getConf()->debug)

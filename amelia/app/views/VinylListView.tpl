@@ -28,11 +28,10 @@
 											<br>
 											<p>&nbsp;</p>
                       <br>
-						<input id="liczba_plyt" type="hidden" name="liczba_plyt value="%">
-                      <input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
+											<input id="liczba_plyt" type="hidden" name="liczba_plyt" value="%">
   									</div>
   								</div>
-								<!--<a href="#" class="button icon fa-file-alt">More</a>-->
+									<input type="submit" name="Filtruj" value="Filtruj" class="button icon fa-arrow-circle-right">
 							</section>
 						</div>
           </form>
@@ -64,19 +63,11 @@
                         <td>{$row["gatunek"]}</td>
                         -->
                         <td>
-													{if \core\RoleUtils::inRole('admin') || \core\RoleUtils::inRole('employee')}
+													{if \core\RoleUtils::inRole('employee')}
 														<a href="{$conf->action_url}vinylEdit/{$row['id_produkt']}" class="button small">Edytuj</a>
-														{if \core\RoleUtils::inRole('admin')}
-															<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
-														{/if}
-													{else}
-														<a href="
-															{if \core\RoleUtils::inRole('user')}
-																{$conf->action_url}vinylGet/{$row['id_produkt']}
-															{else}
-																{$conf->action_root}loginShow
-															{/if}
-														" class="button small">Wypożycz</a>
+														<a href="{$conf->action_url}vinylDelete/{$row['id_produkt']}" class="button alt small">Usuń</a>
+													{elseif \core\RoleUtils::inRole('user')}
+														<a href="{$conf->action_url}vinylGet/{$row['id_produkt']}" class="button alt small">Wypożycz</a>
 													{/if}
                         </td>
               				</tr>
@@ -117,26 +108,28 @@
 				<div class="col-8 col-12-medium imp-medium">
 						<div id="content">
 							<section class="last">
-								{if !\core\RoleUtils::inRole('user')}
-									<h2>Chcesz dodać nowy produkt?</h2>
-								{else}
-									<h2>Zapraszamy do zakupów!</h2>
-								{/if}
 								{if \core\RoleUtils::inRole('employee')}
-									<p>Jako <strong>pracownik</strong> możesz dodawać produkty do bazy danych.
+									<h2>Chcesz dodać nowy produkt?</h2>
+									<p>Jako <strong>pracownik</strong> możesz dodawać i usuwać produkty z bazy danych.
 										<br>Spróbuj!
 									</p>
+									<a href="{$conf->action_root}vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
 								{elseif \core\RoleUtils::inRole('admin')}
-									<p>Jako <strong>administrator</strong> możesz dodawać i usuwać produkty z bazy danych.
+									<h2>Zarządzaj użytkownikami</h2>
+									<p>Jako <strong>administrator</strong> możesz zarządzać bazą użytkowników strony oraz modyfikować ich uprawnienia.
+										<br>Nie możesz zarządzać bazą produktów ani zamówieniami.
+									</p>
+									<a href="{$conf->action_root}admin" class="button icon solid fa-arrow-circle-right">Panel admina</a>
+								{elseif \core\RoleUtils::inRole('user')}
+									<h2>Zapraszamy do zakupów!</h2>
+									<p>Jako <strong>klient</strong> możesz wypożyczać produkty z naszej oferty.
 										<br>Spróbuj!
 									</p>
 								{else}
-									<p>Jako <strong>klient</strong> możesz wypożyczyć po jednym produkcie z naszej oferty.
-										<br>Spróbuj!
+									<h2>Może do nas dołączysz?</h2>
+									<p>Jako <strong>gość</strong> możesz swobodnie przeglądać produkty z naszej oferty.
+										<br>Aby móc wypożyczyć produkt, zaloguj się.
 									</p>
-								{/if}
-								{if !\core\RoleUtils::inRole('user')}
-									<a href="{$conf->action_root}vinylEdit" class="button icon solid fa-arrow-circle-right">Dodaj</a>
 								{/if}
 							</section>
 						</div>
@@ -145,22 +138,4 @@
 			</div>
 		</div>
 	</div>
-<!--
-<form action="{$conf->action_root}login" method="post" class="pure-form pure-form-aligned bottom-margin">
-	<legend>Logowanie do systemu</legend>
-	<fieldset>
-        <div class="pure-control-group">
-			<label for="id_login">login: </label>
-			<input id="id_login" type="text" name="login" value="{$form->login}"/>
-		</div>
-        <div class="pure-control-group">
-			<label for="id_pass">pass: </label>
-			<input id="id_pass" type="password" name="pass" /><br />
-		</div>
-		<div class="pure-controls">
-			<input type="submit" value="zaloguj" class="pure-button pure-button-primary"/>
-		</div>
-	</fieldset>
-</form>
--->
 {/block}

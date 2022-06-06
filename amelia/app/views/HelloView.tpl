@@ -12,7 +12,7 @@
 				<div class="col-5 col-12-medium">
 					<ul>
 						<li><a href="{$conf->action_root}vinylList" class="button large icon solid fa-arrow-circle-right">
-							{if \core\RoleUtils::inRole('employee') || \core\RoleUtils::inRole('admin')}
+							{if \core\RoleUtils::inRole('employee')}
 								Zarządzaj
 							{elseif \core\RoleUtils::inRole('user')}
 								Wypożycz
@@ -20,7 +20,19 @@
 								Przeglądaj
 							{/if}
 							</a></li>
-						<li><a href="{$conf->action_root}info" class="button alt large icon solid fa-question-circle">Więcej info</a></li>
+						<li><a href="
+							{if \core\RoleUtils::inRole('admin')}
+								{$conf->action_root}admin
+							{else}
+								{$conf->action_root}info
+							{/if}
+							" class="button alt large icon solid fa-question-circle">
+							{if \core\RoleUtils::inRole('admin')}
+								Panel admina
+							{else}
+								Więcej info
+							{/if}
+						</a></li>
 					</ul>
 				</div>
 			</div>
