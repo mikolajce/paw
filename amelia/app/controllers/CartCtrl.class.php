@@ -90,11 +90,12 @@ class CartCtrl {
         App::getDB()->update("wypozyczenie",[
           "zakonczone" => "1"
         ],[
-          "id_wypozyczenie" => SessionUtils::load("global_order_id")
+          "id_wypozyczenie" => SessionUtils::load("global_order_id", true)
         ]);
         App::getDB()->insert("wypozyczenie",[
           "id_uzytkownik" => SessionUtils::load("global_user_id", true),
         ]);
+		SessionUtils::store("global_order_id",App::getDB()->id("wypozyczenie"));
       } catch (\Exception $e) {
         Utils::addErrorMessage('Wystąpił błąd podczas finalizacji zamówienia');
         if (App::getConf()->debug)

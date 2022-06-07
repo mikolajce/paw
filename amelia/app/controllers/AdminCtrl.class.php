@@ -7,6 +7,7 @@ use core\Message;
 use core\Utils;
 use core\RoleUtils;
 use core\ParamUtils;
+use core\SessionUtils;
 
 class AdminCtrl {
 
@@ -37,7 +38,7 @@ class AdminCtrl {
 
 
     public function action_adminRevoke(){
-      try {
+	  try {
         App::getDB()->update("uzytkownikrola", [
           "id_rola" => "3"
         ],[
@@ -48,6 +49,7 @@ class AdminCtrl {
         if(App::getConf()->debug)
           Utils::addErrorMessage($e->getMessage());
       }
+	
       App::getRouter()->redirectTo("admin");
     }
 

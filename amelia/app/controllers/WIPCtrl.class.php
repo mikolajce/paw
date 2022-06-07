@@ -16,6 +16,7 @@ class WIPCtrl {
       App::getSmarty()->assign("role",$var);
 
       App::getSmarty()->assign("costam", SessionUtils::load("global_order_id", true));
+	  App::getSmarty()->assign("costam2", SessionUtils::load("global_user_id", true));
 
       //App::getMessages()->addMessage(new Message("Uciekaj stąd!", Message::INFO));
       Utils::addErrorMessage("A kysz!");

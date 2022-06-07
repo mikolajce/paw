@@ -69,7 +69,6 @@ class VinylEditCtrl {
               'trim' => true,
               'required' => true,
               'required_message' => "Wprowadź gatunek",
-              'numeric' => false,
               'min_length' => 1,
               'validator_message' => "Gatunek niepoprawny"
     ]);
@@ -87,7 +86,7 @@ class VinylEditCtrl {
               'required' => true,
               'required_message' => "Wprowadź długość",
               'min_length' => 1,
-              'regexp' => [],
+              //'regexp' => [],
               'validator_message' => "Podaj zapis mm:ss"
     ]);
     $this->form->dodatki = $v->validateFromPost('dodatki', [
@@ -104,13 +103,6 @@ class VinylEditCtrl {
               'numeric' => true,
               'min_length' => 1,
               'validator_message' => "Podaj dostępną ilość asortymentu"
-    ]);
-    $this->form->id_wypozyczalnia = $v->validateFromPost('id_wypozyczalnia', [
-              'trim' => true,
-              'required' => true,
-              'required_message' => "Podaj wypożyczalnię",
-              'min_length' => 1,
-              'validator_message' => "Zła wypożyczalnia"
     ]);
 
     if(App::getMessages()->isError())

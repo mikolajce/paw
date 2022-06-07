@@ -30,6 +30,7 @@
 			{/foreach}
 		</table>
 		<p>test id zamowienia: {$costam}</p>
+		<p>test id usera: {$costam2}</p>
 		</div>
 	</div>
 {/block}
