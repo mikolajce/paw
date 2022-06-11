@@ -98,8 +98,6 @@ INSERT INTO `uzytkownik` (`id_uzytkownik`, `login`, `pass`, `imie`, `nazwisko`, 
 (1, 'admin', 'admin', 'Mikołaj', 'Cieśliczka', 'test@mail.com'),
 (2, 'employee', 'employee', 'Bonifacy', 'Bęcwał', 'ga@mon.com'),
 (3, 'user', 'user', 'Adam', 'Nowak', 'jego@mail.com'),
-(8, 'test', 'owe', 'smieszne', 'tomek', 'hehe'),
-(9, 'iiirir', 'iririe', 'agd', 'itue', 'mikolajce@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -122,8 +120,6 @@ INSERT INTO `uzytkownikrola` (`id_rola`, `id_uzytkownik`, `data_nadanie`, `data_
 (1, 1, '2022-05-22', '2022-05-22'),
 (2, 2, '2022-05-22', NULL),
 (3, 3, '2022-05-22', NULL),
-(3, 8, '0000-00-00', NULL),
-(3, 9, '2022-06-06', NULL);
 
 -- --------------------------------------------------------
 
@@ -139,12 +135,6 @@ CREATE TABLE `wypozprodukt` (
 --
 -- Dumping data for table `wypozprodukt`
 --
-
-INSERT INTO `wypozprodukt` (`id_wypozyczenie`, `id_produkt`) VALUES
-(7, 4),
-(9, 6),
-(11, 6),
-(12, 2);
 
 -- --------------------------------------------------------
 
@@ -184,15 +174,6 @@ CREATE TABLE `wypozyczenie` (
 --
 -- Dumping data for table `wypozyczenie`
 --
-
-INSERT INTO `wypozyczenie` (`id_wypozyczenie`, `id_uzytkownik`, `data`, `zwrot`, `cena`, `zakonczone`) VALUES
-(7, 3, NULL, NULL, 0, b'0'),
-(8, 3, NULL, NULL, 0, b'0'),
-(9, 8, NULL, NULL, 0, b'0'),
-(10, 8, NULL, NULL, 0, b'0'),
-(11, 3, NULL, NULL, 0, b'0'),
-(12, 3, NULL, NULL, 0, b'1'),
-(13, 3, NULL, NULL, 0, b'0');
 
 --
 -- Indexes for dumped tables
